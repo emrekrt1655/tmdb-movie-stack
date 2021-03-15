@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useCallback} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,25 +8,31 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {useStyles} from './Navbar.style'
+import {FireBaseAuthContext} from '../../context/AuthContext'
+import firebase from '../../firebase/firebase.utils'
 
 
 export default function MenuAppBar() {
+  const {currentUser} = useContext(FireBaseAuthContext);
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     setAuth(event.target.checked);
-  };
+  }, []);
 
-  const handleMenu = (event) => {
+  const handleMenu = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
+  },[]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  },[]);
+  const handleSignOut = useCallback(() => {
+    firebase.signOut()
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -38,7 +44,7 @@ export default function MenuAppBar() {
           <Typography variant="h6" className={classes.title}>
             Movie Stack
           </Typography>
-          {auth && (
+          {currentUser && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -46,7 +52,8 @@ export default function MenuAppBar() {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              >
+              > 
+                {currentUser?.displayName}
                 <AccountCircle />
               </IconButton>
               <Menu
@@ -66,8 +73,10 @@ export default function MenuAppBar() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
               </Menu>
             </div>
+              
           )}
         </Toolbar>
       </AppBar>

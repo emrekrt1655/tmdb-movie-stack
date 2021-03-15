@@ -13,8 +13,8 @@ const initialValues = {
   password: "",
 };
 
-const handleFormikSubmit = (values) => {
-  alert(JSON.stringify(values, null, 2));
+const handleFormikSubmit = values => {
+  firebase.login(values.email, values.password)
 };
 
 const Signin = () => {

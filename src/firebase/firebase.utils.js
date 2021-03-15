@@ -22,14 +22,29 @@ const devConfig = {
         this.firebaseAuth = firebase.auth()
       }
 
-    register(email, password) {
-        this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+    async register(displayName, email, password) {
+      try {
+        await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
+        this.firebaseAuth.currentUser.updateProfile({
+          displayName,
+        })
+      } catch (err) {
+        console.log('F.error:', err)
+      }
+       
+       
     }
 
     useGoogleProvider() {
       const googleProvider = new firebase.auth.GoogleAuthProvider();
       googleProvider.setCustomParameters({promt: 'select_account'}); // to open select account window
       this.firebaseAuth.signInWithPopup(googleProvider);
+    }
+    signOut() {
+      this.firebaseAuth.signOut();
+    }
+    login(email, password) {
+      this.firebaseAuth.signInWithEmailAndPassword(email, password)
     }
   }
   

@@ -19,7 +19,7 @@ const Signup = () => {
     },
 
      onSubmit: values => {
-          firebase.register(values.email,values.password);
+        firebase.register(values.displayName, values.email,values.password);        
         },
   });
   return (
