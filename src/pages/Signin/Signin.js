@@ -3,6 +3,7 @@ import { TextField, Button, Grid, Container } from "@material-ui/core";
 import { styles } from "./Signin.style";
 import { Formik } from "formik";
 import firebase from "../../firebase/firebase.utils";
+import * as Yup from 'yup';
 
 const handleGoogleButtonClick = () => {
   firebase.useGoogleProvider();
@@ -13,6 +14,13 @@ const initialValues = {
   password: "",
 };
 
+const signInVaildationSchema = Yup.object().shape({
+  email: Yup.string().email('Invaiid Email').required('Email is requierd!'),
+  password: Yup.string()
+    .required('No password provided.')
+    .min(8, 'Password is too short - should me 8 chars minimum. '),
+});
+
 const handleFormikSubmit = values => {
   firebase.login(values.email, values.password)
 };
@@ -22,8 +30,8 @@ const Signin = () => {
 
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
-      <Formik initialValues={initialValues} onSubmit={handleFormikSubmit}>
-        {({ handleSubmit, values, handleChange }) => (
+      <Formik initialValues={initialValues} onSubmit={handleFormikSubmit} validationSchema={signInVaildationSchema}>
+        {({ handleSubmit, values, handleChange, errors }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
@@ -35,6 +43,8 @@ const Signin = () => {
                   fullWidth
                   value={values.email}
                   onChange={handleChange}
+                  error = {errors.email}
+                  helperText={errors.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -46,6 +56,8 @@ const Signin = () => {
                   fullWidth
                   value={values.password}
                   onChange={handleChange}
+                  error = {errors.password}
+                  helperText={errors.password}
                 />
               </Grid>
               <Grid item xs={12}>
