@@ -1,13 +1,17 @@
 import React from "react";
-import { TextField, Button, Grid, Container } from "@material-ui/core";
+import { TextField, Button, Grid, Container, Avatar, Typography } from "@material-ui/core";
 import { styles } from "./Signup.style";
 import { useFormik } from "formik";
 import firebase from '../../firebase/firebase.utils'
 import * as Yup from 'yup';
+import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
+import {useHistory} from 'react-router-dom'
+
 
 const handleGoogleButtonClick = () => {
   firebase.useGoogleProvider();
 }
+
 
 const signUpVaildationSchema = Yup.object().shape({
   displayName: Yup.string().required('Display Name is requierd!'),
@@ -19,6 +23,10 @@ const signUpVaildationSchema = Yup.object().shape({
 
 const Signup = () => {
   const Styles = styles();
+  const history = useHistory();
+  const handleClick = () => {
+    history.push('/signin')
+  }
   
   const formik = useFormik({
     initialValues: {
@@ -34,6 +42,8 @@ const Signup = () => {
   });
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
+      <Avatar className={Styles.avatar}><LockOutlinedIcon/></Avatar>
+       <Typography variant='h4' component='h4' className={Styles.text}> Sign Up </Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -87,6 +97,9 @@ const Signup = () => {
           </Grid>
         </Grid>
       </form>
+      <Typography className={Styles.history}>
+              If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign In</span>
+      </Typography>
     </Container>
   );
 };

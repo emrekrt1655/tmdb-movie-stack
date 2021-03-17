@@ -1,9 +1,11 @@
 import React from "react";
-import { TextField, Button, Grid, Container } from "@material-ui/core";
+import { TextField, Button, Grid, Container, Avatar, Typography } from "@material-ui/core";
 import { styles } from "./Signin.style";
 import { Formik } from "formik";
 import firebase from "../../firebase/firebase.utils";
 import * as Yup from 'yup';
+import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
+import {useHistory} from 'react-router-dom'
 
 const handleGoogleButtonClick = () => {
   firebase.useGoogleProvider();
@@ -27,9 +29,15 @@ const handleFormikSubmit = values => {
 
 const Signin = () => {
   const Styles = styles();
+  const history = useHistory();
+  const handleClick = () => {
+    history.push('/signup')
+  }
 
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
+       <Avatar className={Styles.avatar}><LockOutlinedIcon/></Avatar>
+       <Typography variant='h4' component='h4' className={Styles.text}> Sign In </Typography>
       <Formik initialValues={initialValues} onSubmit={handleFormikSubmit} validationSchema={signInVaildationSchema}>
         {({ handleSubmit, values, handleChange, errors }) => (
           <form onSubmit={handleSubmit}>
@@ -84,6 +92,9 @@ const Signin = () => {
           </form>
         )}
       </Formik>
+      <Typography className={Styles.history}>
+              If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign Up</span>
+      </Typography>
     </Container>
   );
 };
