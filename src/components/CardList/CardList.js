@@ -1,19 +1,22 @@
 import React from 'react'
-import {baseImageUrl} from '../../helper/utils'
+import Card from './Card'
 
 
 function CardList({movieData, handleLoadMore, page}) {
    
     return (
-
-        <div>
-            {
-                movieData && movieData?.map((movie, index) => {
+    <div>
+          {
+                movieData && movieData?.map((movie) => {
                     return(
-                    <p key={index}> {movie?.title} </p>)
+                    <Card key={movie?.id} movieData={movie} > {movie?.title} </Card>)
                 })
             }
-        </div>
+    </div>
+
+        
+          
+        
     )
 }
 
