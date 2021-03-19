@@ -2,29 +2,31 @@ import React, {useState} from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Avatar from "@material-ui/core/Avatar";
-import CardActions from "@material-ui/core/CardActions";
+import CardActions from "@material-ui/core/CardActions"; 
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./Card.style";
-import { baseImageUrl } from "../../helper/utils";
+import { baseImageUrl, noPhotoAvailable } from "../../helper/utils";
 import Modal from "./Modal";
 import MovieCreationIcon from '@material-ui/icons/MovieCreation';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import {useHistory} from 'react-router-dom'
+
 
 export default function MovieCard({ movieData }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const history = useHistory();
   const classes = useStyles();
   const image = baseImageUrl + movieData.poster_path;
-
+  const onOpenDetailPage = () => history.push(`/detail/${movieData?.id}`)
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={onOpenDetailPage}>
         <CardMedia
           className={classes.media}
-          image={image}
+          image={image ? image : noPhotoAvailable}
           title={"Contemplative Reptile"}
         />
         <CardContent>
@@ -54,6 +56,7 @@ export default function MovieCard({ movieData }) {
                <p><FiberManualRecordIcon className={classes.icon}/> {movieData?.adult ?<span className={classes.spann}> Adult </span> : <span className={classes.spann}> Family </span> } </p>
             </div>
                <p><FiberManualRecordIcon className={classes.icon}/>Release Date: <span className={classes.spann}> {movieData?.release_date} </span> </p>
+            
 
         </div>  
 
@@ -61,3 +64,6 @@ export default function MovieCard({ movieData }) {
     </Card>
   );
 }
+
+
+

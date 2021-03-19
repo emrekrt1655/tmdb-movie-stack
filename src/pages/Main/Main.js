@@ -9,7 +9,7 @@ function Main() {
     const [movieData, setMovieData] = useState([])
     const [searchKeyword, setSearchKeyword] = useState('movie');
     const [page, setPage] = useState(1);
-    const apiKey = process.env.REACT_APP_API_KEY 
+    const apiKey = process.env.REACT_APP_MOVIEAPI_KEY 
 
 
 
@@ -42,8 +42,10 @@ function Main() {
     return (
         
             <Container className={Styles.wrapper}>
-                {/* <SearchInput setSearchKeyword={setSearchKeyword} /> */}
+                
                 <CardList movieData={movieData} handleLoadMore={handleLoadMore} page={page} />
+                  
+                
             </Container>
       
     )
