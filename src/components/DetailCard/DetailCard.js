@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Container from '@material-ui/core/Container'
 import { baseImageUrl, noPhotoAvailable } from "../../helper/utils";
 
 
@@ -39,6 +41,7 @@ export default function MediaCard({movie}) {
   const image = baseImageUrl + movie?.poster_path;
   
   return (
+    
     <Card className={classes.root}>
       <div>
         <CardMedia
@@ -80,6 +83,7 @@ export default function MediaCard({movie}) {
         </CardContent>
       </div>
     </Card>
+   
   );
 }
 

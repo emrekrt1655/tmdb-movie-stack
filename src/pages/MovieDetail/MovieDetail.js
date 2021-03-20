@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {  Container } from "@material-ui/core";
+import {  Container, CircularProgress } from "@material-ui/core";
 import { styles } from "./MovieDetail.style";
 import axios from 'axios'
 import {movieDetailBaseUrl } from '../../helper/utils'
 import {useParams} from 'react-router-dom'
 import DetailCard from '../../components/DetailCard/DetailCard'
+
 
 
 
@@ -40,7 +41,12 @@ useEffect(() => {
 
     return (
         <Container className={Styles.wrapper}>
-            <DetailCard movie={movieDetailData}/>
+            {
+                !movieDetailData ? <CircularProgress/>
+                :  <DetailCard movie={movieDetailData}/>
+            }
+            
+           
         </Container>
     )
 }

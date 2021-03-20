@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 import { Grid, Button, TextField } from "@material-ui/core";
 
-function CardList({ movieData, handleLoadMore, page }) {
+function CardList({ movieData, handleNextPage, page, handlePreviosPage }) {
   return (
     <Grid >
      
@@ -17,14 +17,26 @@ function CardList({ movieData, handleLoadMore, page }) {
         })}
         </Grid>
         <Grid>
+        <div>
+        { page > 1 ?
         <Button
                   variant="contained"
                   color="primary"
                   style={{margin:'1rem'}}
-                  onClick= {handleLoadMore}
+                  onClick= {handlePreviosPage}
           >
-            Load More
+            Previous Page
+          </Button> : null
+          }
+        <Button
+                  variant="contained"
+                  color="primary"
+                  style={{margin:'1rem'}}
+                  onClick= {handleNextPage}
+          >
+            Next Page
           </Button>
+          </div>
         </Grid>
     </Grid>
   );
