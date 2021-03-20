@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import {  Container } from "@material-ui/core";
+import {  Container, Typography  } from "@material-ui/core";
 import { styles } from "./Main.style";
 import CardList from '../../components/CardList/CardList'
+import SearchBox from '../../components/SearchBox/SearchBox'
 import axios from 'axios'
 import {baseUrl } from '../../helper/utils'
 
+
+
 function Main() {
     const [movieData, setMovieData] = useState([])
-    const [searchKeyword, setSearchKeyword] = useState('movie');
+    const [searchKeyword, setSearchKeyword] = useState('/movie');
     const [page, setPage] = useState(1);
     const apiKey = process.env.REACT_APP_MOVIEAPI_KEY 
+
+
 
 
 
@@ -29,21 +34,24 @@ function Main() {
 
     
 
+    const handleLoadMore = () => {
+      setPage(page+1);
+    }
+
     useEffect(()=>{
         getPostList();
       },[searchKeyword, page]);  
       
-      console.log(movieData)
       
-  const handleLoadMore = () => {
-    setPage(page+1);
-  }
     const Styles = styles();
     return (
         
             <Container className={Styles.wrapper}>
-                
-                <CardList movieData={movieData} handleLoadMore={handleLoadMore} page={page} />
+              <Typography className={Styles.heading} variant='h3' component='h3'>
+                      Welcome to Movie Stack..
+              </Typography>
+              <SearchBox searchKeyword={searchKeyword} setPage={setPage} setSearchKeyword={setSearchKeyword} />
+              <CardList movieData={movieData} handleLoadMore={handleLoadMore} page={page} />
                   
                 
             </Container>

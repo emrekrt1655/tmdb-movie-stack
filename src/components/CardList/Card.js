@@ -30,19 +30,21 @@ export default function MovieCard({ movieData }) {
           title={"Contemplative Reptile"}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography  className={classes.titlehead} gutterBottom variant="h5" component="h2">
             {movieData.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography 
+          className={classes.para} variant="body2" color="textSecondary" component="p">
             {movieData.overview}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions className={classes.cardAction}>
+        
+        <Button className={classes.cardButtonLeft} size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary" onClick={() => setIsOpen(true)}>
+        <Button className={classes.cardButtonRight}  size="small" color="primary" onClick={() => setIsOpen(true)}>
           Learn More
         </Button>
       </CardActions>

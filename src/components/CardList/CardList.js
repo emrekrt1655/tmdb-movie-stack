@@ -1,10 +1,12 @@
 import React from "react";
 import Card from "./Card";
-import { Grid } from "@material-ui/core";
+import { Grid, Button, TextField } from "@material-ui/core";
 
 function CardList({ movieData, handleLoadMore, page }) {
   return (
-    <Grid container spacing={3}>
+    <Grid >
+     
+      <Grid container spacing={3}>
       {movieData &&
         movieData?.map((movie) => {
           return (
@@ -13,6 +15,17 @@ function CardList({ movieData, handleLoadMore, page }) {
             </Grid>
           );
         })}
+        </Grid>
+        <Grid>
+        <Button
+                  variant="contained"
+                  color="primary"
+                  style={{margin:'1rem'}}
+                  onClick= {handleLoadMore}
+          >
+            Load More
+          </Button>
+        </Grid>
     </Grid>
   );
 }

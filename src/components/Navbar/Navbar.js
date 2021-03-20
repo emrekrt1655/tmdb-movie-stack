@@ -1,4 +1,5 @@
 import React, {useContext, useCallback} from 'react';
+import {useHistory} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,7 @@ export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory()
 
   const handleChange = useCallback((event) => {
     setAuth(event.target.checked);
@@ -34,6 +36,10 @@ export default function MenuAppBar() {
     firebase.signOut()
   }, []);
 
+  const handleHomePage = () => {
+    history.push('/')
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -41,7 +47,7 @@ export default function MenuAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography  variant="h6" className={classes.title} onClick={handleHomePage} >
             Movie Stack
           </Typography>
           {currentUser && (
