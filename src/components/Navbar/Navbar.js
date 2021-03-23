@@ -50,7 +50,7 @@ export default function MenuAppBar() {
           <Typography  variant="h6" className={classes.title} onClick={handleHomePage} >
             Movie Stack
           </Typography>
-          {currentUser && (
+          {currentUser ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -83,6 +83,21 @@ export default function MenuAppBar() {
               </Menu>
             </div>
               
+          ): (
+            <React.Fragment>
+            <MenuItem
+            onClick={()=> {
+              window.location.href = '/signin'
+            }} >
+              Sign In
+            </MenuItem>
+            <MenuItem
+            onClick={()=> {
+              window.location.href = '/signup'
+            }} >
+              Sign Up
+            </MenuItem>
+            </React.Fragment>
           )}
         </Toolbar>
       </AppBar>
