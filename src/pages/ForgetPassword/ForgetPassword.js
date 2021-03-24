@@ -32,7 +32,7 @@ const ForgetPassword = () => {
     firebase.forgetPassword(values.email);
     history.push("/");
   };
-  
+
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
       <Avatar className={Styles.avatar}>

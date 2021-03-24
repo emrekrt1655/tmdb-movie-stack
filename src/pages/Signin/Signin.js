@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import firebase from "../../firebase/firebase.utils";
 import * as Yup from 'yup';
 import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -44,8 +44,8 @@ const Signin = () => {
 
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
-       <Avatar className={Styles.avatar}><LockOutlinedIcon/></Avatar>
-       <Typography variant='h4' component='h4' className={Styles.text}> Sign In </Typography>
+      <Avatar className={Styles.avatar}><LockOutlinedIcon /></Avatar>
+      <Typography variant='h4' component='h4' className={Styles.text}> Sign In </Typography>
       <Formik initialValues={initialValues} onSubmit={handleFormikSubmit} validationSchema={signInVaildationSchema}>
         {({ handleSubmit, values, handleChange, errors }) => (
           <form onSubmit={handleSubmit}>
@@ -59,7 +59,7 @@ const Signin = () => {
                   fullWidth
                   value={values.email}
                   onChange={handleChange}
-                  error = {errors.email}
+                  error={errors.email}
                   helperText={errors.email}
                 />
               </Grid>
@@ -72,7 +72,7 @@ const Signin = () => {
                   fullWidth
                   value={values.password}
                   onChange={handleChange}
-                  error = {errors.password}
+                  error={errors.password}
                   helperText={errors.password}
                 />
               </Grid>
@@ -101,10 +101,10 @@ const Signin = () => {
         )}
       </Formik>
       <Typography className={Styles.history}>
-              Did you forget your password? <span className={Styles.span} onClick={handleForgetPassClick} >Please Click</span>
+        Did you forget your password? <span className={Styles.span} onClick={handleForgetPassClick} >Please Click</span>
       </Typography>
       <Typography className={Styles.history}>
-              If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign Up</span>
+        If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign Up</span>
       </Typography>
     </Container>
   );

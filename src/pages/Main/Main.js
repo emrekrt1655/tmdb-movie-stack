@@ -23,18 +23,18 @@ function Main() {
     try {
       setMovieData(
         result?.data?.results)
-      }catch (err) {
+    } catch (err) {
       console.log(err);
     }
   };
 
-  
-  
-  const handleNextPage =  () => {
+
+
+  const handleNextPage = () => {
     setPage(page + 1)
 
   };
-  const handlePreviosPage =  () => {
+  const handlePreviosPage = () => {
     setPage(page - 1)
 
   };
@@ -61,7 +61,7 @@ function Main() {
           <CardList
             movieData={movieData}
             handleNextPage={handleNextPage}
-            handlePreviosPage = {handlePreviosPage}
+            handlePreviosPage={handlePreviosPage}
             page={page}
           />
         </React.Fragment>

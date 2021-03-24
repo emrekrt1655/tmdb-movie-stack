@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 const styles = {
-    wrapper:{
+    wrapper: {
         position: 'fixed',
         top: '50%',
         left: '50%',
@@ -12,7 +12,7 @@ const styles = {
         zIndex: 1000,
         borderRadius: '15px'
     },
-    overlay:{
+    overlay: {
         position: 'fixed',
         top: 0,
         left: 0,
@@ -23,14 +23,14 @@ const styles = {
     }
 }
 
-const Modal = ({open, children, onClose}) => {
+const Modal = ({ open, children, onClose }) => {
     if (!open) return null
     return ReactDom.createPortal(
         <>
-        <div style={styles.overlay} onClick={onClose}/>
-        <div style={styles.wrapper}>
-            {children}
-        </div>
+            <div style={styles.overlay} onClick={onClose} />
+            <div style={styles.wrapper}>
+                {children}
+            </div>
         </>,
         document.getElementById('portal')
     )

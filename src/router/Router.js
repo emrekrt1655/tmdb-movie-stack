@@ -5,12 +5,13 @@ import MovieDetail from "../pages/MovieDetail/MovieDetail";
 import Signin from "../pages/Signin/Signin";
 import ForgetPassword from "../pages/ForgetPassword/ForgetPassword";
 import Main from "../pages/Main/Main";
+import TrendMovies from "../pages/TrendMovies/TrendMovies";
 import Navbar from "../components/Navbar/Navbar";
-import {FireBaseAuthContext} from '../context/AuthContext'
+import { FireBaseAuthContext } from '../context/AuthContext'
 
 
 function AppRouter() {
-  const {currentUser} = useContext(FireBaseAuthContext);
+  const { currentUser } = useContext(FireBaseAuthContext);
 
   return (
     <Router>
@@ -18,12 +19,13 @@ function AppRouter() {
       <Switch>
         <Route path="/signup" component={Signup} exact />
         <Route path="/signin" component={Signin} exact />
-        <Route path='/forget-pass' component= {ForgetPassword} exact />
+        <Route path='/forget-pass' component={ForgetPassword} exact />
         <Route
           exact
           path="/detail/:id"
           component={currentUser ? MovieDetail : Signin}
         />
+        <Route path="/trend-movies" component={currentUser ? TrendMovies : Signin} />
         <Route path="/" component={Main} />
       </Switch>
     </Router>

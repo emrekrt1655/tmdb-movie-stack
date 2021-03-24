@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import firebase from '../../firebase/firebase.utils'
 import * as Yup from 'yup';
 import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -28,25 +28,25 @@ const Signup = () => {
     firebase.useGoogleProvider();
     history.push('/')
   }
-  
-  
+
+
   const formik = useFormik({
     initialValues: {
       displayName: "",
       email: "",
       password: "",
     },
-    validationSchema: signUpVaildationSchema, 
+    validationSchema: signUpVaildationSchema,
 
-     onSubmit: values => {
-        firebase.register(values.displayName, values.email,values.password);
-        history.push('/')       
-        },
+    onSubmit: values => {
+      firebase.register(values.displayName, values.email, values.password);
+      history.push('/')
+    },
   });
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
-      <Avatar className={Styles.avatar}><LockOutlinedIcon/></Avatar>
-       <Typography variant='h4' component='h4' className={Styles.text}> Sign Up </Typography>
+      <Avatar className={Styles.avatar}><LockOutlinedIcon /></Avatar>
+      <Typography variant='h4' component='h4' className={Styles.text}> Sign Up </Typography>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -58,7 +58,7 @@ const Signup = () => {
               fullWidth
               value={formik.values.displayName}
               onChange={formik.handleChange}
-              error = {formik.errors.displayName}
+              error={formik.errors.displayName}
               helperText={formik.errors.displayName}
             />
           </Grid>
@@ -71,7 +71,7 @@ const Signup = () => {
               fullWidth
               value={formik.values.email}
               onChange={formik.handleChange}
-              error = {formik.errors.email}
+              error={formik.errors.email}
               helperText={formik.errors.email}
             />
           </Grid>
@@ -84,7 +84,7 @@ const Signup = () => {
               fullWidth
               value={formik.values.password}
               onChange={formik.handleChange}
-              error = {formik.errors.password}
+              error={formik.errors.password}
               helperText={formik.errors.password}
             />
           </Grid>
@@ -101,7 +101,7 @@ const Signup = () => {
         </Grid>
       </form>
       <Typography className={Styles.history}>
-              If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign In</span>
+        If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign In</span>
       </Typography>
     </Container>
   );
