@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import { Grid, Button, TextField } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 
 function CardList({ movieData, handleNextPage, page, handlePreviosPage }) {
   return (

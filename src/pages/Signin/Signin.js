@@ -7,9 +7,7 @@ import * as Yup from 'yup';
 import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
 import {useHistory} from 'react-router-dom'
 
-const handleGoogleButtonClick = () => {
-  firebase.useGoogleProvider();
-};
+
 
 const initialValues = {
   email: "",
@@ -23,9 +21,7 @@ const signInVaildationSchema = Yup.object().shape({
     .min(8, 'Password is too short - should me 8 chars minimum. '),
 });
 
-const handleFormikSubmit = values => {
-  firebase.login(values.email, values.password)
-};
+
 
 const Signin = () => {
   const Styles = styles();
@@ -33,6 +29,18 @@ const Signin = () => {
   const handleClick = () => {
     history.push('/signup')
   }
+  const handleGoogleButtonClick = () => {
+    firebase.useGoogleProvider();
+    history.push('/')
+  };
+
+  const handleForgetPassClick = () => {
+    history.push('forget-pass')
+  }
+  const handleFormikSubmit = values => {
+    firebase.login(values.email, values.password);
+    history.push('/')
+  };
 
   return (
     <Container maxWidth="sm" className={Styles.wrapper}>
@@ -92,6 +100,9 @@ const Signin = () => {
           </form>
         )}
       </Formik>
+      <Typography className={Styles.history}>
+              Did you forget your password? <span className={Styles.span} onClick={handleForgetPassClick} >Please Click</span>
+      </Typography>
       <Typography className={Styles.history}>
               If you have already an acoount please <span className={Styles.span} onClick={handleClick} >Sign Up</span>
       </Typography>

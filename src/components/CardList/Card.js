@@ -41,8 +41,8 @@ export default function MovieCard({ movieData }) {
       </CardActionArea>
       <CardActions className={classes.cardAction}>
         
-        <Button className={classes.cardButtonLeft} size="small" color="primary">
-          Share
+        <Button className={classes.cardButtonLeft} size="small" color="primary" onClick={onOpenDetailPage}>
+          See Full Movie
         </Button>
         <Button className={classes.cardButtonRight}  size="small" color="primary" onClick={() => setIsOpen(true)}>
           Learn More

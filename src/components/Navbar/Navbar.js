@@ -16,14 +16,11 @@ import firebase from '../../firebase/firebase.utils'
 export default function MenuAppBar() {
   const {currentUser} = useContext(FireBaseAuthContext);
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const history = useHistory()
 
-  const handleChange = useCallback((event) => {
-    setAuth(event.target.checked);
-  }, []);
+  
 
   const handleMenu = useCallback((event) => {
     setAnchorEl(event.currentTarget);
@@ -39,6 +36,13 @@ export default function MenuAppBar() {
   const handleHomePage = () => {
     history.push('/')
   }
+
+  const handleLoginPage =  useCallback(()=> {
+    history.push('/signin')
+  })
+  const handleRegisterPage =  useCallback(()=> {
+    history.push('/signup')
+  })
 
   return (
     <div className={classes.root}>
@@ -60,7 +64,7 @@ export default function MenuAppBar() {
                 color="inherit"
               > 
                 {currentUser?.displayName}
-                <AccountCircle />
+                <AccountCircle className={classes.circle} />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -77,8 +81,7 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Lastest Movies</MenuItem>
                 <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
               </Menu>
             </div>
@@ -86,15 +89,11 @@ export default function MenuAppBar() {
           ): (
             <React.Fragment>
             <MenuItem
-            onClick={()=> {
-              window.location.href = '/signin'
-            }} >
+            onClick={handleLoginPage} >
               Sign In
             </MenuItem>
             <MenuItem
-            onClick={()=> {
-              window.location.href = '/signup'
-            }} >
+            onClick={handleRegisterPage} >
               Sign Up
             </MenuItem>
             </React.Fragment>

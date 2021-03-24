@@ -1,8 +1,8 @@
-import React, {useRef} from 'react'
+import React from 'react'
 import {TextField} from '@material-ui/core'
 import {styles} from './SearchBox.style'
 
-function SearchBox({setSearchKeyword, setPage, SearchKeyword}) {
+function SearchBox({setSearchKeyword}) {
     const classes = styles();
    
     const onSearch = (event) => {
@@ -10,9 +10,7 @@ function SearchBox({setSearchKeyword, setPage, SearchKeyword}) {
         
     }
     
-    {
-        SearchKeyword == '' && setSearchKeyword('movie') 
-    }
+   
 
     return (
         <div className={classes.wrapper} >

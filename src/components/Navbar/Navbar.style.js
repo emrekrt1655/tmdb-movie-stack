@@ -11,4 +11,7 @@ export const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
       cursor: 'pointer',
     },
+    circle:{
+      marginLeft: '1rem'
+    }
   }));

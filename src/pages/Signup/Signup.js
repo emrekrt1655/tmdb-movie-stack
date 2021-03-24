@@ -8,10 +8,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
 import {useHistory} from 'react-router-dom'
 
 
-const handleGoogleButtonClick = () => {
-  firebase.useGoogleProvider();
-}
-
 
 const signUpVaildationSchema = Yup.object().shape({
   displayName: Yup.string().required('Display Name is requierd!'),
@@ -27,6 +23,12 @@ const Signup = () => {
   const handleClick = () => {
     history.push('/signin')
   }
+
+  const handleGoogleButtonClick = () => {
+    firebase.useGoogleProvider();
+    history.push('/')
+  }
+  
   
   const formik = useFormik({
     initialValues: {
@@ -37,7 +39,8 @@ const Signup = () => {
     validationSchema: signUpVaildationSchema, 
 
      onSubmit: values => {
-        firebase.register(values.displayName, values.email,values.password);        
+        firebase.register(values.displayName, values.email,values.password);
+        history.push('/')       
         },
   });
   return (
