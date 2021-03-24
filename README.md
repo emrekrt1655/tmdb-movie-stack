@@ -30,4 +30,6 @@ You can see all the movie details page
 You can see the daily or weekly trendy movies
 
 
- 
+ ### `To the Website`
+
+ Open [https://tmdb-moviestack.herokuapp.com/](https://tmdb-moviestack.herokuapp.com/) to view it in the browser.
